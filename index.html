@@ -1,0 +1,72 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>sdcc-wasm — SDCC 4.5.0 (mcs51) for WebAssembly, GPL-2.0-or-later</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 44rem; margin: 2rem auto; padding: 0 1rem;
+         font: 16px/1.6 system-ui, sans-serif; }
+  code, pre { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em; }
+  pre { overflow-x: auto; padding: .75rem; background: #8881; border-radius: 6px; }
+  table { border-collapse: collapse; } td, th { text-align: left; padding: .2rem .8rem .2rem 0; }
+  .note { border-left: 3px solid #8886; padding-left: 1rem; }
+</style>
+
+<h1>sdcc-wasm</h1>
+
+<p><strong>SDCC 4.5.0 (mcs51 port) built for WebAssembly, distributed under its own
+GNU General Public License, version 2 or later.</strong></p>
+
+<p class="note">This site exists so that applications which are <em>not</em> GPL can fetch
+this toolchain at the user's request, instead of carrying GPL code inside their own
+distribution. It is not part of any BSD-licensed project.</p>
+
+<h2>Licence and the offer of source</h2>
+
+<p>The full licence text is in
+<a href="COPYING">COPYING</a>. These artifacts are an <strong>unmodified</strong> build of
+SDCC 4.5.0. The complete corresponding source is the upstream release tarball:</p>
+
+<pre>https://sourceforge.net/projects/sdcc/files/sdcc/4.5.0/sdcc-src-4.5.0.tar.bz2/download
+SHA-256  d5030437fb436bb1d93a8dbdbfb46baaa60613318f4fb3f5871d72815d1eed80</pre>
+
+<p>No patches were applied to SDCC itself. One build-environment patch was needed for
+Emscripten, a <code>libiberty</code> <code>psignal</code> conflict. The build recipe,
+toolchain versions and link flags are in <a href="BUILD-INFO.md">BUILD-INFO.md</a>.</p>
+
+<p>As GPL-2 section 3 requires, the publisher offers to provide the complete corresponding
+machine-readable source on request, for no more than the cost of performing distribution.
+<strong><a href="https://github.com/CrispStrobe/sdcc-wasm/issues">Open an issue</a></strong>
+to take up that offer.</p>
+
+<h2>The files</h2>
+
+<table>
+<tr><th>file</th><th>what it is</th></tr>
+<tr><td><a href="static/sdcc-wasm/sdcc.wasm">static/sdcc-wasm/sdcc.wasm</a></td><td>compiler driver</td></tr>
+<tr><td><a href="static/sdcc-wasm/cc1.wasm">static/sdcc-wasm/cc1.wasm</a></td><td>C front end</td></tr>
+<tr><td><a href="static/sdcc-wasm/sdas8051.wasm">static/sdcc-wasm/sdas8051.wasm</a></td><td>assembler</td></tr>
+<tr><td><a href="static/sdcc-wasm/sdld.wasm">static/sdcc-wasm/sdld.wasm</a></td><td>linker</td></tr>
+<tr><td><a href="static/sdcc-wasm/runtime.json">static/sdcc-wasm/runtime.json</a></td><td>packed headers and libraries</td></tr>
+</table>
+
+<p>Each <code>.wasm</code> has an Emscripten <code>.js</code> beside it. SHA-256 of the four
+binaries:</p>
+
+<pre>a482b8019d48f1f1c02415b0bb274795f5830ffe4b1a93a7e152b9cec8bf8cd2  cc1.wasm
+9c015efff6543e7bfafde2271f1c26ea57984e2f7fdcf6563fa5907827e127e4  sdas8051.wasm
+36c4207dc8a8e8571497cc4b07cae2a3cc98824c289035aa5df8f1e57c47db6d  sdcc.wasm
+d5292272e7ebfbc6dfa5e1cd1c51f1642e11ba7efb3b0c7c3d6f3df23aba55e5  sdld.wasm</pre>
+
+<p>Served with <code>Access-Control-Allow-Origin: *</code>, so a browser on another origin
+may fetch and instantiate them directly.</p>
+
+<h2>The linking exception covers output, not redistribution</h2>
+
+<p>Each header under <code>include/mcs51/</code> carries the GPL plus SDCC's linking
+exception, so a program <em>compiled with</em> this toolchain does not inherit GPL
+obligations from it. That exception is about the compiler's <strong>output</strong>. It says
+nothing about redistributing the compiler, which is why this repository is separate.</p>
+
+<p>Not affiliated with, or endorsed by, the SDCC project.
+<a href="https://github.com/CrispStrobe/sdcc-wasm">Repository</a>.</p>
